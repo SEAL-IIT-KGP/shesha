@@ -53,3 +53,5 @@ The following sequence of commands is used to test `shesha.py` on `Intel(R) Core
 5. In this example, we focus on SIMD and Vector extensions, hence we run `python3 shesha.py --num-instructions 40 -avx -avx2 -sse -ssse3 -sse2`
 
   This command runs Shesha on a search space of `586` instructions, where each particle manages `40` instructions.
+
+**Note**: Initially, the user may observe **make: *** [Makefile:4: all] Error 139**. This is because Shesha's initialization may have generated an ASM that SEGFAULTs. This does not hamper the convergence, since after a while, Shesha converges on the correctly functioning ASM.
