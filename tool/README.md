@@ -23,7 +23,11 @@ Then, use `bash setup.sh` to:
 
 1. Download [instructions.xml](https://uops.info/). This is used by `shesha.py` to define the search space for the optimizer.
 
-2. Check the available extensions on the system. This helps in choosing the right flags for `shesha.py`.
+2. Install `gcc` and `nasm`. We used `gcc-11.4.0` and `nasm-2.15.05` for our tests.
+
+3. Install the Intel MSR debug module
+
+4. Check the available extensions on the system. This helps in choosing the right flags for `shesha.py`.
 
 
 ## Example run

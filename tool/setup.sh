@@ -3,6 +3,12 @@
 echo "[*] Fetching instructions.xml"
 wget https://uops.info/instructions.xml
 
+echo "[*] Updating gcc and nasm"
+sudo apt-get upgrade gcc nasm
+
+echo "[*] Installing msr module"
+sudo modprobe msr
+
 echo "[*] Listing available Instruction Set Extensions"
 echo "[*] Vector Extensions"
 lscpu | tr ' ' '\n' | grep avx
