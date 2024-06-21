@@ -13,7 +13,7 @@ A sample run of *leak* target looks like:
 
 where ADDR represents the address of the byte to leaked, COUNT represents the hits of the leaked byte in the flush-reload buffer, HEX represents the exact byte leaked, while DEC is the decimal representation of HEX. Below attached is one example (`aes_simd/sample_runs/run_2`). All sample runs are on Alder Lake.
 
---------
+
 0x0000000000402058 :
 	00001000: 54 (T)
 
@@ -127,11 +127,10 @@ where ADDR represents the address of the byte to leaked, COUNT represents the hi
 
 0x000000000040207d :
 	00001000: 73 (s)
---------
 
 ## System Details
 
-Architecture:            x86_64                                                                                                               
+Architecture**:            x86_64                                                                                                               
   CPU op-mode(s):        32-bit, 64-bit                                                                                                       
   Address sizes:         46 bits physical, 48 bits virtual                                                                                    
   Byte Order:            Little Endian                                                                                                        
