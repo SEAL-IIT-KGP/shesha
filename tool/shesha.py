@@ -182,6 +182,7 @@ class Optimizer:
         self.monitored_events = []
         self.equivalence_classes = {}
         self.optimizer_config_dict = optimizer_config_dict
+        self.generation = 0
 
     def parse_ise(self):
         self.root_xml = ET.parse("instructions.xml")
@@ -376,6 +377,9 @@ class Optimizer:
                             print("[*] (Cognitive Exploration Phase) Discovered new event {desc}".
                                     format(desc=equivalence_class.get_class_desc()))
                             equivalence_class.add_to_swarm(particle, int(output[1]))
+                            with open("run.log", "a") as f:
+                                f.write("[*] (Cognitive Exploration Phase) Discovered new event {desc} at generation {gen}\n".
+                                        format(desc=equivalence_class.get_class_desc(), gen=self.generation))
                         else:
                             # did we improve an already known event?
                             old_event_count = equivalence_class.get_event_count(particle)
@@ -431,6 +435,9 @@ class Optimizer:
                             print("[*] (Mixed Exploration Phase) Discovered new event {desc}".format(
                                 desc=equivalence_class.get_class_desc()))
                             equivalence_class.add_to_swarm(particle, int(output[1]))
+                            with open("run.log", "a") as f:
+                                f.write("[*] (Mixed Exploration Phase) Discovered new event {desc} at generation {gen}\n".format(
+                                    desc=equivalence_class.get_class_desc(), gen=self.generation))
                         else:
                             # did we improve an already known event?
                             old_event_count = equivalence_class.get_event_count(particle)
@@ -485,6 +492,9 @@ class Optimizer:
                                 swarm_class.add_to_swarm(particle, int(output[1]))
                                 print("[*] (Mixed Exploitation Phase) Discovered new event {desc}".format(
                                    desc=swarm_class.get_class_desc()))
+                                with open("run.log", "a") as f:
+                                    f.write("[*] (Mixed Exploitation Phase) Discovered new event {desc} at generation {gen}\n".format(
+                                        desc=swarm_class.get_class_desc(), gen=self.generation))
                             else:
                                 # did we improve an already known event?
                                 old_event_count = swarm_class.get_event_count(particle)
@@ -574,6 +584,7 @@ class Optimizer:
         print("[*] Beginning with cognitive phase...")
         while(1):
             GENERATION = GENERATION + 1
+            self.generation = GENERATION
             if(GENERATION == THRESHOLD):
                 print("[*] Moving to mixed phase...")
 
