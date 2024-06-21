@@ -1,4 +1,4 @@
-;ASSISTS.SSE_AVX_MIX:23
+;MACHINE_CLEARS.SMC:35
 global fuzz_instruction_extensions
 align 64
 fuzz_instruction_extensions:

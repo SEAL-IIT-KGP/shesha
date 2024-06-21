@@ -1,4 +1,4 @@
-;ASSISTS.SSE_AVX_MIX:23
+;ASSISTS.FP:28
 global fuzz_instruction_extensions
 align 64
 fuzz_instruction_extensions:
