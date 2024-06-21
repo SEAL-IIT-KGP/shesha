@@ -54,4 +54,6 @@ The following sequence of commands is used to test `shesha.py` on `Intel(R) Core
 
   This command runs Shesha on a search space of `586` instructions, where each particle manages `40` instructions.
 
+6. Shesha is not expected to terminate. Use `kill` to manually terminate. From our observations, around 400-500 generations of evolution are sufficient to uncover the major types of bad speculation (and further reduce their dimensionality).
+
 **Note**: Initially, the user may observe **make: *** [Makefile:4: all] Error 139**. This is because Shesha's initialization may have generated an ASM that SEGFAULTs. This does not hamper the convergence, since after a while, Shesha converges on the correctly functioning ASM.
