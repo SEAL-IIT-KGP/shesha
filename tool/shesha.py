@@ -466,7 +466,10 @@ class Optimizer:
                             continue
                         break
      
-                    replacement_instruction = swarm_leaders[self.equivalence_classes[equivalence_class].get_class_desc()][0].return_single_instruction()
+                    try:
+                        replacement_instruction = swarm_leaders[self.equivalence_classes[equivalence_class].get_class_desc()][0].return_single_instruction()
+                    except:
+                        continue
                     particle_asm[mutation_index] = replacement_instruction
                     particle_asm = "\n".join(particle_asm)
                     with open("fuzz.S", "w") as f:
