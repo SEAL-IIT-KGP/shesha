@@ -130,10 +130,10 @@ int main(int argc, char** argv){
 	file = fopen("msr.config", "r");
 	while (fgets(line, sizeof(line), file)) {
 		line[strcspn(line, "\n")] = '\0';
-		value1 = strtok(line, ":");
-		value2 = strtok(NULL, ":");
+		msr = strtok(line, ":");
+		desc = strtok(NULL, ":");
 
-		uint64_t msr = strtoull(value1, NULL, 16);
-		check_for_submicrocode_assist(msr, value2);
+		uint64_t msr_ = strtoull(msr, NULL, 16);
+		check_for_submicrocode_assist(msr_, desc);
 	}	
 }
