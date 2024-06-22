@@ -122,6 +122,20 @@ int main(int argc, char** argv){
 	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	check_for_submicrocode_assist(0x10C1, "ASSISTS.SSE_AVX_MIX");
-	check_for_submicrocode_assist(0x01C3, "MACHINE_CLEARS.SMC");
+		
+	FILE *file;
+	char line[50];
+	char* msr; char* desc;
+
+	file = fopen("msr.config", "r");
+	while (fgets(line, sizeof(line), file)) {
+		line[strcspn(line, "\n")] = '\0';
+		value1 = strtok(line, ":");
+		value2 = strtok(NULL, ":");
+
+		uint64_msr = strtoull(value1, NULL, 16);
+		printf("%d\n", msr)
+		printf("%s %s\n", value1, value2);
+		//check_for_submicrocode_assist(msr, value2);
+	}	
 }
