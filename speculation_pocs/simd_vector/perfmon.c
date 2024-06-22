@@ -133,9 +133,7 @@ int main(int argc, char** argv){
 		value1 = strtok(line, ":");
 		value2 = strtok(NULL, ":");
 
-		uint64_msr = strtoull(value1, NULL, 16);
-		printf("%d\n", msr)
-		printf("%s %s\n", value1, value2);
-		//check_for_submicrocode_assist(msr, value2);
+		uint64_t msr = strtoull(value1, NULL, 16);
+		check_for_submicrocode_assist(msr, value2);
 	}	
 }

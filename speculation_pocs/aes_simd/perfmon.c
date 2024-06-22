@@ -119,8 +119,21 @@ void check_for_submicrocode_assist_repetitions(int config, char* message){
 
 int main(int argc, char** argv){
 	///////////////// set conditions for denomal assists to be discovered /////////////////////////
-	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_OFF);
-	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_OFF);
+	_MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+	_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	check_for_submicrocode_assist(0x02C1, "ASSISTS.FP");	
+		
+	FILE *file;
+	char line[50];
+	char* msr; char* desc;
+
+	file = fopen("msr.config", "r");
+	while (fgets(line, sizeof(line), file)) {
+		line[strcspn(line, "\n")] = '\0';
+		value1 = strtok(line, ":");
+		value2 = strtok(NULL, ":");
+
+		uint64_t msr = strtoull(value1, NULL, 16);
+		check_for_submicrocode_assist(msr, value2);
+	}	
 }
