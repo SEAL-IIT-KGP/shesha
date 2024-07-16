@@ -6,12 +6,10 @@
 #define BYTE_TRY            8
         
 // CPU Configuration
-#define CPU_VICTIM          11
-#define CPU_ATTACKER        5
+#define CPU_VICTIM          0
+#define CPU_ATTACKER        1
 
 // To avoid leaking printf related noise
 #define SILENT_MODE         0
 
-// AVX-512
-#define AVX_512             1
 

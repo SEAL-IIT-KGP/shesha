@@ -117,7 +117,7 @@ s_load_encode:
     kmovq %rdi, %k2
 #else
     vmovups (%rdi), %ymm3
-    vpxord %ymm1, %ymm1, %ymm1
+    vxorpd %ymm1, %ymm1, %ymm1
     vmovups (%rsi), %ymm1
     vpcmpeqb %ymm2, %ymm2, %ymm2
 #endif

@@ -108,19 +108,12 @@ s_load_encode:
     inc %rax
     .endr  
 
-#if AVX_512
     vmovups (%rdi), %zmm3
     vpxord %zmm1, %zmm1, %zmm1
     vmovups (%rsi), %zmm1
     mov $0b1111111111111111, %rdi
     kmovq %rdi, %k1
     kmovq %rdi, %k2
-#else
-    vmovups (%rdi), %ymm3
-    vpxord %ymm1, %ymm1, %ymm1
-    vmovups (%rsi), %ymm1
-    vpcmpeqb %ymm2, %ymm2, %ymm2
-#endif
 
 // Introduce page fault in the load
     mov $0, %r13
@@ -147,12 +140,7 @@ s_load_encode:
     .endr 
     
 
-
-#if AVX_512
     vpgatherdq 0(%r13, %ymm1, 1), %zmm5{%k1}  
-#else
-    vpgatherdd %ymm2, 0(%r13, %ymm1, 1), %ymm5
-#endif
     encode_ymm
     ret
 

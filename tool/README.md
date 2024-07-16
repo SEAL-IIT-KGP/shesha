@@ -57,3 +57,31 @@ The following sequence of commands is used to test `shesha.py` on `Intel(R) Core
 6. Shesha is not expected to terminate. Use `kill` to manually terminate. From our observations, around 400-500 generations of evolution are sufficient to uncover the major types of bad speculation (and further reduce their dimensionality).
 
 **Note**: Initially, the user may observe **make: *** [Makefile:4: all] Error 139**. This is because Shesha's initialization may have generated an ASM that SEGFAULTs. This does not hamper the convergence, since after a while, Shesha converges on the correctly functioning ASM.
+
+## Analyse output
+
+The tool dumps set of instructions into the `asm\` directory in which particular bad speculation event is triggered. A sample ASM file looks as following:
+```
+;ASSISTS.SSE_AVX_MIX:23
+global fuzz_instruction_extensions
+align 64
+fuzz_instruction_extensions:
+VPAVGB XMM3, XMM2, XMM11
+ADDPS XMM5, XMM2
+MOVD XMM9, R15D
+VBROADCASTSD YMM0, XMM12
+MOVQ XMM1, XMM14
+PSHUFB MM2, MM4
+PSIGNB MM5, MM6
+VPSLLVD YMM8, YMM9, YMM4
+VPMOVSXBW YMM5, XMM10
+...
+ret
+``` 
+The first line (commented using `;`) denotes the type of bad speculation event triggered by the sequences of instructions in the particular file along with the total number of such events encountered. As the tool runs, it passes through three phases (refer to the [paper](https://www.usenix.org/conference/usenixsecurity24/presentation/chakraborty) for details on each phase): Initialization, Cognitive and Mixed. In the Mixed phase, dimentionality reduction operation is performed (along with PSO search) that removes non-participating instructions from the set of instructions. In other words, after multiple iterations of Mixed phase, some of the non-participating instructions are removed from the asm files, making the list smaller. However, multiple combination of instructions could trigger the same bad speculation event, as evident from the example where `23` such events have been triggered by the instructions. To segregate the optimal set of instruction that could trigger the same bad speculation event, the user could manually remove some of the instructions to make smaller subsets as long as such subsets triggers the same event. 
+
+To test if a set of instruction display a particular bad speculation event, one can use `perfmon.c` from the appropriate directory. For example, we can observe from the example above that the particular sequence of instruction triggered multiple `SSE_AVX_MIX` assists. To segregate the sub-sets of instructions that could optimally trigger the same `SSE_AVX_MIX` assists, the user can replace the code snippet in the `fuzz.S` file inside `/speculation_pocs/simd_vector/` and execute `sudo ./fuzz` (More details on executing `fuzz` can be found in [speculation_pocs](../speculation_pocs/README.md)). The output of `fuzz` shows the number and types of bad speculation events triggered by the given instruction sequence.
+
+## Resource Estimation:
+To run the tool, it is expected to take around 3 hours (depending on processor clock) to obtain signifant number of instruction sequences (as asm files) triggering different bad speculation events. The longer the tool runs, the amount of dimentionality reduction of the instruction sequences increases. Available disk space of around 5GB and 16GB RAM is preferred. 
+
