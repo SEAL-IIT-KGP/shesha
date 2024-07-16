@@ -60,7 +60,7 @@ The following sequence of commands is used to test `shesha.py` on `Intel(R) Core
 
 ## Analyse output
 
-The tool dumps set of instructions into the `asm\` directory in which particular bad speculation event is triggered. A sample ASM file looks as following:
+The tool dumps set of instructions into the `asm/` directory in which particular bad speculation event is triggered. A sample ASM file looks as following:
 ```
 ;ASSISTS.SSE_AVX_MIX:23
 global fuzz_instruction_extensions
