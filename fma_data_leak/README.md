@@ -46,7 +46,7 @@ Change the following options in config.h as per requirement:
 2. SILENT_MODE : Set `1` to observe the leaked output on the terminal
 
 ### Optional
-This parameter is only available for the FMA PoC in `fma_source_leak_artifact`. Since AMS algorithm in `ams52_artifact` uses AVX-512 instructions, the system needs to have AVX-512 support to run the artifact.
+This parameter is only available for the FMA PoC in `fma_source_leak_artifact`. Since AMS algorithm in `ams52_artifact` uses AVX-512 instructions, the system needs to have AVX-512 support to run the artifact. \
 3. AVX_512 : Set `1` if AVX_512 extension is available on the machine (default)
 
 
