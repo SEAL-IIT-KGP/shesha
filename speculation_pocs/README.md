@@ -131,19 +131,19 @@ where ADDR represents the address of the byte to leaked, COUNT represents the hi
 
 ## System Details
 ### SSE-AVX intermixing
-Affected CPUs (tested): Intel 12, 13 gen client and Intel 4 gen Xeon processors
-Operating System (tested): Ubuntu 20, Ubuntu 22
+Affected CPUs (tested): Intel 12, 13 gen client and Intel 4 gen Xeon processors \
+Operating System (tested): Ubuntu 20, Ubuntu 22 \
 Hyperthreading required?: no
 
 ### precision intermixing
-Affected CPUs (tested): Intel 12, 13 gen client and Intel 4 gen Xeon processors
-Operating System (tested): Ubuntu 20, Ubuntu 22
+Affected CPUs (tested): Intel 12, 13 gen client and Intel 4 gen Xeon processors \
+Operating System (tested): Ubuntu 20, Ubuntu 22 \
 Hyperthreading required?: no
 
 ### SSE-AES intermixing
-Affected CPUs (tested): Intel 11, 12, 13 gen client and Intel 3, 4 gen Xeon processors
-Operating System (tested): Ubuntu 20, Ubuntu 22
-Hyperthreading required?: no
+Affected CPUs (tested): Intel 11, 12, 13 gen client and Intel 3, 4 gen Xeon processors \
+Operating System (tested): Ubuntu 20, Ubuntu 22 \
+Hyperthreading required?: no \
 Special input required?: Works only with denormal numbers
 
 ## Resource Estimation:
