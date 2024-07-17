@@ -51,10 +51,10 @@ This parameter is only available for the FMA PoC in `fma_source_leak_artifact`. 
 
 
 ## System Details
-Affected CPUs (tested): Intel 11th Gen Intel(R) Core(TM) i5-11500
-Operating System (tested): Ubuntu 22
-Hyperthreading required?: yes
-**Note:** *The vulnerability is mitigated by GDS (Gather Data Sampling) mitigation. If your processor is not vulnerable to GDS, you might not be able to observe the FMA leakage. However, all other leakages presented in this repository shall work as they are not affected by GDS mitigation.*
+Affected CPUs (tested): Intel 11th Gen Intel(R) Core(TM) i5-11500 \
+Operating System (tested): Ubuntu 22 \
+Hyperthreading required?: yes \
+**Note:** *The vulnerability is mitigated by [GDS (Gather Data Sampling) mitigation](https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/technical-documentation/gather-data-sampling.html). If your processor is not vulnerable to GDS, you might not be able to observe the FMA leakage. However, all other leakages presented in this repository shall work as they are not affected by GDS mitigation.*
 
 ## Resource Estimation:
 For each artifact, it is expected to take around 15-30 minutes (depending on processor clock) to observe the leakage. The storage and memory usage is not significant.
